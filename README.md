@@ -4,7 +4,7 @@
  
 Machine Learning school project - minister by George Darminton 
 Equipe: 
-  Lucas Alves Rufno
+		Lucas Alves Rufno
   Rodrigo de Lima Oliveira
   Ullayne Fernandes Farias de Lima
   Valdemiro Rosa Viera do Santos 
