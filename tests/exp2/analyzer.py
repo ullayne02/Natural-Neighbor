@@ -1,4 +1,5 @@
 import os
+import csv
 import matplotlib
 import numpy as np
 import random as rnd
@@ -21,10 +22,12 @@ for path, dist in datas:
     filenames = list(os.walk(path))[0][2]
     nans = list(map(lambda _: [], range(len(sizes))))
     for filename in filenames:
-        data, _ = arff.loadarff(path + filename)
-        data = list(map(lambda x: list(x), data))
-        for i, size in enumerate(sizes):
-            nans[i].append(func(data[:int(size)]))
+        with open(path + filename) as fl:
+            data = list(csv.reader(fl, delimiter=','))[1:]
+            for i, _ in enumerate(data):
+                data[i] = list(map(lambda x: float(x), data[i]))
+            for i, size in enumerate(sizes):
+                nans[i].append(func(data[:int(size)]))
     m = list(map(lambda x: np.mean(np.array(x)), nans))
     mG = str(round(float(np.mean(np.array(m))), 3))
     v = list(map(lambda x: np.var(np.array(x)), nans))
@@ -42,3 +45,4 @@ for path, dist in datas:
     # Save the figure and show
     plt.tight_layout()
     fig.savefig(dist + 'Distribution.png')
+    print(dist + " Distribution generated!")

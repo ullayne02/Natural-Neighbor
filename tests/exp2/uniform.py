@@ -8,12 +8,12 @@ nEX = 1000  # Numero de instancias por dataset
 print("Generating 200 uniforms datasets with 1000 instances each one:")
 for n in range(nDS):
     n += 1
-    with open("datasets/UDD/" + str(n) + ".arff", "a") as fl:
-        fl.write("@RELATION dataset" + str(n) + "\n\n")
+    with open("datasets/UDD/" + str(n) + ".csv", "a") as fl:
+        h = []
         for d in range(dim):
             d += 1
-            fl.write("@ATTRIBUTE attr" + str(d) + " NUMERIC" + "\n")
-        fl.write("\n@DATA\n")
+            h.append("attr" + str(d))
+        fl.write(str(h)[1:-1].replace("\'", "") + "\n")
         for _ in range(nEX):
             ls = []
             for _ in range(dim):
