@@ -6,7 +6,7 @@ import random as rnd
 matplotlib.use('Agg')
 from scipy.io import arff
 import matplotlib.pyplot as plt
-from src import nan
+import nan
 
 def func(data):
     return 6 + round(rnd.random() - rnd.random(), 0)
