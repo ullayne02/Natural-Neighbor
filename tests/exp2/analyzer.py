@@ -6,14 +6,15 @@ import random as rnd
 matplotlib.use('Agg')
 from scipy.io import arff
 import matplotlib.pyplot as plt
+from src import nan
 
 def func(data):
     return 6 + round(rnd.random() - rnd.random(), 0)
 
 datas = [
-    ("datasets/UDD/", "Uniform"),
-    ("datasets/GDD/", "Gaussian"),
-    ("datasets/EDD/", "Exponential")]
+    ("tests/exp2/datasets/UDD/", "Uniform"),
+    ("tests/exp2/datasets/GDD/", "Gaussian"),
+    ("tests/exp2/datasets/EDD/", "Exponential")]
     
 sizes = ['500', '600', '700', '800', '900', '1000']
 x = np.arange(len(sizes))
@@ -44,5 +45,5 @@ for path, dist in datas:
     
     # Save the figure and show
     plt.tight_layout()
-    fig.savefig(dist + 'Distribution.png')
+    fig.savefig("tests/exp2/" + dist + 'Distribution.png')
     print(dist + " Distribution generated!")

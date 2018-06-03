@@ -8,7 +8,7 @@ nEX = 1000  # Numero de instancias por dataset
 print("Generating 200 uniforms datasets with 1000 instances each one:")
 for n in range(nDS):
     n += 1
-    with open("datasets/UDD/" + str(n) + ".csv", "a") as fl:
+    with open("tests/exp2/datasets/UDD/" + str(n) + ".csv", "a") as fl:
         h = []
         for d in range(dim):
             d += 1
