@@ -64,9 +64,9 @@ class Natural_Neighbor(object):
                 for c in knn:
                     self.knn[i].add(c)
                 #print(r, i, self.knn[i], len(self.knn[i]))
-                if(i in self.knn[n] and (i,n) not in self.nan_edges): 
-                    self.nan_edges[i] = n 
-                    self.nan_edges[n] = i  #checar se precisa disso aqui
+                if(i in self.knn[n] and i not in self.nan_edges[n]): 
+                    self.nan_edges[i].add(n) 
+                    self.nan_edges[n].add(i)  #checar se precisa disso aqui
                     self.nan_num[i] += 1
                     self.nan_num[n] += 1 
             
@@ -81,6 +81,6 @@ class Natural_Neighbor(object):
 
 n = Natural_Neighbor()
 for i in range(1,201):
-    n.load("Natural-Neighbor/tests/exp2/UDD/"+str(i)+".csv")
+    n.load("../tests/exp2/UDD/"+str(i)+".csv")
     print(n.algorithm())
 
