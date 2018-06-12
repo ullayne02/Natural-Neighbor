@@ -1,3 +1,4 @@
+
 from sklearn.neighbors import NearestNeighbors
 from sklearn.neighbors import KDTree
 import sklearn.neighbors
@@ -28,10 +29,14 @@ class Natural_Neighbor(object):
                 aux.append(row)
         self.data = np.array(aux)
     
+    def read(self, trainX, trainY=None):
+        self.target = np.array(trainY)
+        self.data = np.array(trainX)
+
     def asserts(self): 
+        self.nan_edges = set()
         for j in range(len(self.data)): 
             self.knn[j] = set()
-            self.nan_edges[j] = set()
             self.nan_num[j] = 0
             self.repeat[j] = 0
 
@@ -62,11 +67,11 @@ class Natural_Neighbor(object):
                 n = knn[-1]
                 self.knn[i].add(n)
                 if(i in self.knn[n] and (i, n) not in self.nan_edges): 
-                    self.nan_edges[i].add((i, n)) 
-                    self.nan_edges[n].add((n, i))  
+                    self.nan_edges.add((i, n)) 
+                    self.nan_edges.add((n, i))
                     self.nan_num[i] += 1
-                    self.nan_num[n] += 1 
-            
+                    self.nan_num[n] += 1
+                    
             cnt = self.count()
             rep = self.repeat[cnt]
             self.repeat[cnt] += 1
